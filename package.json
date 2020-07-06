@@ -1,0 +1,11 @@
+{
+    "name": "duniapaybusiness",
+    "version": "2.1.21",
+    "description": "Dunia Pay Business",
+    "scripts": {},
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "newman": "^5.1.0"
+    },
+    "devDependencies": {}
+}
