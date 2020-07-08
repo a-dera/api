@@ -1,11 +1,26 @@
 {
-    "name": "duniapaybusiness",
-    "version": "2.1.21",
-    "description": "Dunia Pay Business",
-    "scripts": {},
-    "license": "BSD-3-Clause",
-    "dependencies": {
-        "newman": "^5.1.0"
-    },
-    "devDependencies": {}
+  "name": "duniapay",
+  "version": "1.0.0",
+  "description": "DuniaPay API wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 8000"
+  },
+  "keywords": [
+    "payment",
+    "API",
+    "fcfa",
+    "xof",
+    "westafrica",
+    "DuniaPay"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "promise": "^7.1.1",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
 }
