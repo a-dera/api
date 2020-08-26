@@ -1,0 +1,467 @@
+swagger: '2.0'
+security:
+  - gateway: []
+info:
+  title: DuniaPay  API
+  description: The **Duniapay** API Collection is a collection of all endpoints that merchants and developers can take advantage of to build financial solutions in Nigeria
+  version: "0.1.0"
+host: gateway-ksdxotlq6a-uc.a.run.app
+schemes:
+  - https
+produces:
+  - application/json
+x-google-backend:
+  address: https://api-backend-ksdxotlq6a-uc.a.run.app
+  protocol: h2
+paths:
+  /v1/transactions/initialize:
+    post:
+      summary: Initialize Transaction
+      description: >-
+        **Body Params**
+
+        - **email** (_required_) - Customer's email address
+
+        - **amount** (_required_) - Amount in kobo
+
+        - **reference** - Generate a reference or leave this param blank for DuniaPay to generate one for you
+
+        - **callback_url** - Overrides the callback URL set on DuniaPay dashboard.
+
+        - **plan** - If transaction is to create a subscription to a predefined plan, provide plan code here. This would invalidate the value provided in `amount`
+
+        - **invoice_limit** - Number of times to charge customer during subscription to plan
+
+        - **metadata** - Stringified JSON object. Add a `custom_fields` attribute which has an array of objects if you would like the fields to be added to your transaction when displayed on the dashboard.
+
+        - **subaccount** - The code for the subaccount that owns the payment.
+
+        - **transaction_charge** - A flat fee to charge the subaccount for this transaction, in kobo. This overrides the split percentage set when the subaccount was created. Ideally, you will need to use this if you are splitting in flat rates (since subaccount creation only allows for percentage split).
+
+        - **bearer** - Who bears DuniaPay charges? `account` or `subaccount` (defaults to `account`).
+
+        - **channels** - Send us 'card' or 'bank' or 'card','bank', 'mobilemoney', 'duniapay' as an array to specify what options to show the user paying
+      operationId: InitializeTransaction
+      parameters:
+        - in: body
+          name: Transaction
+          schema:
+            $ref: '#/definitions/InitializeTransactionRequest'
+      responses:
+        200:
+          description: OK
+  /v1/transactions/verify/{transactionId}:
+    get:
+      summary: Verify Transaction
+      description: >-
+        **Path Params**
+
+        - **reference** (_required_)
+      operationId: VerifyTransaction
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          minimum: 1
+          description: OK
+      responses:
+        200:
+          description: OK
+  /v1/transactions/totals:
+    get:
+      summary: View Transaction Totals
+      description: >-
+        Total amount received on your account
+
+
+        **Query Params**
+
+        - **from** - Lower bound of date range. Leave undefined to show totals from day one.
+
+        - **to** - Upper bound of date range. Leave undefined to show totals till date.
+      operationId: TransactionTotals
+      responses:
+        200:
+          description: OK
+  /v1/transactions/export:
+    get:
+      summary: Export Transactions
+      description: >-
+        **Query Params**
+
+        - **from** - Lower bound of date range. Leave undefined to export transactions from day one.
+
+        - **to** - Upper bound of date range. Leave undefined to export transactions till date.
+
+        - **settled** - Set to `true` to export only settled transactions. `false` for pending transactions. Leave undefined to export all transactions
+
+        - **payment_page** - Specify a payment page's id to export only transactions conducted on said page
+
+        - **customer** - Specify customer id.
+
+        - **currency** - Currency in which you are charging the customer in.
+
+        - **settlement** - An ID for the settlement whose transactions we should export
+
+        - **amount** - Amount for transactions to export
+
+        - **status** - Status for transactions to export
+      operationId: ExportTransactions
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          minimum: 1
+          description: OK
+      responses:
+        200:
+          description: OK
+  /v1/transactions/timeline/{transactionId}:
+    get:
+      summary: View Transaction Timeline
+      description: ''
+      operationId: ViewTransactionTimeline
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          minimum: 1
+          description: OK
+      responses:
+        200:
+          description: OK
+  /v1/transactions:
+    get:
+      summary: Returns a list of transactions
+      description: >-
+        **Query Params**
+
+        - **perPage** - Specify how many records you want to retrieve per page
+
+        - **page** - Specify exactly what page you want to retrieve
+
+        - **customer** - Specify an ID for the customer whose transactions you want to retrieve
+
+        - **status** - Filter transactions by status ('failed', 'success', 'abandoned')
+
+        - **from** - A timestamp from which to start listing transaction e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
+
+        - **to** - A timestamp at which to stop listing transaction e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
+
+        - **amount** - Filter transactions by amount. Specify the amount in kobo.
+      operationId: ListTransactions
+      responses:
+        200:
+          description: OK
+  /v1/transactions/{transactionId}:
+    get:
+      summary: Returns a transaction by ID
+      description: >-
+        **Path Params**
+
+                - **id** (_required_) - An ID for the transaction to fetch
+      operationId: FetchTransaction
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          minimum: 1
+          description: OK
+      responses:
+        200:
+          description: OK
+  /v1/transactions/charge_authorization:
+    post:
+      summary: Charge Authorization
+      description: >-
+        **Body Params**
+
+        - **reference** - Unique transaction reference. Only `-` `,` `.` `,` `=` and alphanumeric characters allowed. System will generate one if none is provided
+
+        - **authorization_code** - (_required_) Valid authorization code to charge
+
+        - **amount** - (_required_) Amount in kobo
+
+        - **plan** - If transaction is to create a subscription to a predefined plan, provide plan code here
+
+        - **currency** - Currency in which amount should be charged
+
+        - ** email** (_required_) - Customer's email address
+
+        - **metadata** - Add a `custom_fields` attribute which has an array of objects if you would like the fields to be added to your transaction when displayed on the dashboard.
+
+        - **subaccount** - The code for the subaccount that owns the payment.
+
+        - **transaction_charge** - A flat fee to charge the subaccount for this transaction, in kobo. This overrides the split percentage set when the subaccount was created. Ideally, you will need to use this if you are splitting in flat rates (since subaccount creation only allows for percentage split).
+
+        - **bearer** - Who bears DuniaPay charges? `account` or `subaccount`?
+
+        - **invoice_limit** - Number of invoices to raise during the subscription. Overrides `invoice_limit` set on plan.
+      operationId: ChargeAuthorization
+      parameters:
+        - in: body
+          name: ChargeAuthorization
+          schema:
+            $ref: '#/definitions/ChargeAuthorization'
+      responses:
+        200:
+          description: OK
+  /v1/transactions/check_authorization:
+    post:
+      summary: Check Authorization
+      description: >-
+        All mastercard and visa authorizations can be checked with this endpoint to know if they have funds for the payment you seek.
+
+
+        **Body Params**
+
+        - **authorization_code** (_required_) - Authorization code for mastercard or VISA authorization belonging to email.
+
+        - **amount** (_required_) - Amount in kobo
+
+        - **email** (_required_) - Customer's email address
+
+        - **currency** - A currency for the amount we want to check
+
+        In test mode, we will return insufficient funds for an amount greater than or equal 500,000 xof.
+      operationId: CheckAuthorization
+      parameters:
+        - in: body
+          name: CheckAuthorization
+          schema:
+            $ref: '#/definitions/CheckAuthorization'
+      responses:
+        200:
+          description: OK
+  /v1/customers:
+    post:
+      summary: Creates a customer
+      description: >-
+        **Body Params**
+
+        - **email** (_required_) - Customer's email address
+
+        - **first_name** - Customer's first name
+
+        - **last_name** - Customer's last name
+
+        - **phone** - Customer's phone number
+
+        - **metadata** - A set of key/value pairs that you can attach to the customer. It can be used to store additional information in a structured format.
+      operationId: CreateCustomer
+      parameters:
+        - in: body
+          name: Customer
+          schema:
+            $ref: '#/definitions/Customer'
+      responses:
+        200:
+          description: OK
+    get:
+      summary: Returns a list of customers
+      description: >-
+        **Query Params**
+
+        - **perPage** - Specify how many records you want to retrieve per page
+
+        - **page** - Specify exactly what page you want to retrieve
+      operationId: ListCustomers
+      responses:
+        200:
+          description: OK
+  /v1/customers/{customerId}/set_risk_action:
+    put:
+      summary: White/blacklist Customer
+      description: >-
+          **Body Params**
+
+          - **customer** - Customer's ID, code, or email address
+
+          - **risk_action** - One of the possible risk actions. `allow` to whitelist. `deny` to blacklist.
+      operationId: White/blacklistCustomer
+      parameters:
+        - in: path
+          name: customerId
+          required: true
+          type: integer
+          minimum: 1
+          description: OK
+        - in: body
+          name: Customer
+          schema:
+            $ref: '#/definitions/BlacklistCustomer'
+      responses:
+        200:
+          description: OK
+  /v1/customers/{customerId}:
+    get:
+      summary: Returns a customer by ID
+      description: >-
+        **Query Params**
+        - **exclude_transactions** - By default, fetching a customer returns all their transactions. Set this to true to disable this behaviour.
+      operationId: FetchCustomer
+      parameters:
+        - in: path
+          name: customerId
+          required: true
+          type: integer
+          minimum: 1
+          description: OK
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Update a customer
+      description: >-
+        **Body Params**
+
+        - **first_name** - Customer's first name
+
+        - **last_name** - Customer's last name
+
+        - **phone** - Customer's phone number
+
+        - **metadata** - A set of key/value pairs that you can attach to the customer. It can be used to store additional information in a structured format.
+      operationId: UpdateCustomer
+      parameters:
+        - in: path
+          name: customerId
+          required: true
+          type: integer
+          minimum: 1
+        - in: body
+          name: Customer
+          schema:
+            $ref: '#/definitions/Customer'
+      responses:
+        200:
+          description: OK
+securityDefinitions:
+  gateway:
+    authorizationUrl: ""
+    flow: "implicit"
+    type: "oauth2"
+    x-google-issuer: "dunia-gateway@business-282516.iam.gserviceaccount.com"
+    x-google-jwks_uri: "https://www.googleapis.com/robot/v1/metadata/x509/dunia-gateway%40business-282516.iam.gserviceaccount.com"
+definitions:
+  Customer:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      phone:
+        type: string
+      metadata:
+        type: string
+      # Required properties
+    required:
+      - email
+  BlacklistCustomer:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      phone:
+        type: string
+      metadata:
+        type: string
+      # Required properties
+    required:
+      - email
+      - customerId
+  InitializeTransactionRequest:
+    required:
+      - email
+      - amount
+      - reference
+      - currency
+      - callback_url
+      - metadata
+    type: object
+    properties:
+      email:
+        type: string
+      amount:
+        type: string
+      reference:
+        type: string
+      currency:
+        type: string
+      callback_url:
+        type: string
+      metadata:
+        $ref: '#/definitions/Metadata'
+    example:
+      email: customer@email.com
+      amount: 5000
+      reference: PSTK_TEST
+      currency: XOF
+      callback_url: http://url.com
+      metadata:
+        cancel_action: http://cancelurl.com
+  ChargeAuthorization:
+    required:
+      - email
+      - amount
+      - authorization_code
+    type: object
+    properties:
+      email:
+        type: string
+        example: customer@email.com
+      amount:
+        type: string
+        format: int2
+        example: 5000
+      authorization_code:
+        type: string
+        example: AUTH_CODE
+    example:
+      email: customer@email.com
+      amount: 5000
+      reference: PSTK_TEST
+      currency: XOF
+      callback_url: http://url.com
+      metadata:
+        cancel_action: http://cancelurl.com
+  CheckAuthorization:
+    required:
+      - email
+      - amount
+      - authorization_code
+    type: object
+    properties:
+      email:
+        type: string
+        example: customer@email.com
+      amount:
+        type: string
+        format: int2
+        example: 5000
+      authorization_code:
+        type: string
+        example: AUTH_CODE
+    example:
+      email: customer@email.com
+      amount: 5000
+      authorization_code: AUTH_CODE
+  Metadata:
+    title: Metadata
+    required:
+      - cancel_action
+    type: object
+    properties:
+      cancel_action:
+        type: string
+    example:
+      cancel_action: http://cancelurl.com

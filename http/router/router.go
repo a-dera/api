@@ -4,6 +4,7 @@ import (
 	"github.com/duniapay/api/http/handlers"
 	"github.com/gorilla/mux"
 	"net/http"
+	"strings"
 )
 
 type Route struct {
@@ -43,7 +44,67 @@ var routes = Routes{
 	Route{
 		"PostHealthCheck",
 		"POST",
-		"/health/check",
+		"/v1/health/check",
+		handlers.PostHealthCheck,
+	},
+	Route{
+		"InitizalizeTransaction",
+		"POST",
+		"/v1/transactions/initialize",
+		handlers.PostHealthCheck,
+	},
+	Route{
+		"VerifyTransaction",
+		strings.ToUpper("GET"),
+		"/v1/transactions/verify/{transactionId}",
+		handlers.HealthCheck,
+	},
+	Route{
+		"TransactionTotals",
+		strings.ToUpper("GET"),
+		"/v1/transactions/totals",
+		handlers.HealthCheck,
+	},
+	Route{
+		"VerifyTransaction",
+		strings.ToUpper("GET"),
+		"/v1/transactions/totals",
+		handlers.HealthCheck,
+	},
+	Route{
+		"ExportTransactions",
+		strings.ToUpper("GET"),
+		"/v1/transactions/export",
+		handlers.HealthCheck,
+	},
+	Route{
+		"ViewTransactionTimeline",
+		strings.ToUpper("GET"),
+		"/v1/transactions/timeline/{transactionId}",
+		handlers.HealthCheck,
+	},
+	Route{
+		"ListTransactions",
+		strings.ToUpper("GET"),
+		"/v1/transactions",
+		handlers.HealthCheck,
+	},
+	Route{
+		"FetchTransaction",
+		strings.ToUpper("GET"),
+		"/v1/transactions/{transactionId}",
+		handlers.HealthCheck,
+	},
+	Route{
+		"ChargeAuthorization",
+		strings.ToUpper("POST"),
+		"/v1/transactions/charge_authorization",
+		handlers.HealthCheck,
+	},
+	Route{
+		"CheckAuthorization",
+		strings.ToUpper("POST"),
+		"/v1/transactions/check_authorization",
 		handlers.PostHealthCheck,
 	},
 }

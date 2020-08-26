@@ -4,7 +4,7 @@ Nodejs API wrapper for [DuniaPay](https://duniapay.co/).
 
 ### Installation
 
-```shell script
+```
 npm install duniapay
 ```
 

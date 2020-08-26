@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "business-282516",
+  "private_key_id": "9cf811bb5a427ff7b370a545152cdf4a984f0452",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC2lCorAmJudZFM\nkfRxbJVeiNGoJoPCKhNLXpE1xJPv5MoDtqMLm5ee8ZVRAxvWC4r4Q11w5micTc/f\nIYJpEzX9lBM64siMdWdij/NCDjq2R8Tdwb4ry0gPGxYq2FiRqGZZ/c+gvqquvBqN\n75b/H3080ImWerWH3XQgKa8JWA2sLnMFVtu+26FIoc0kCCAFzAKK6RlR0jGI7v58\nMZesnzWPj5GVG6haEgY7J2TM+vhcpsb8iYXIHOfL7cgKcPCa5ZLgPebk030ngtDd\nDIL8ONobr6e3FUkUPECghSGr2Mv5zpuOJK4mQiszDlfLV4ok7IJallZNP4ZK0aMc\nrC976KNLAgMBAAECggEAFynMAcHfMAldYjwAKaWve5tbEfy06ZzB7uV0AcDLTfuW\nP4tbuxzFyyX2Hh2JWgoD2wRc5fZtXisnDLVpIKCN0HqJSAa+j8dTUvdVUtOQUlDf\nooyybkbvgO8cTFo/PleBiLhBL7EQ4XM+4TP80agykNUaJ4uw3ShU08HGEabosSfK\niJvve2ij7eu9F/Q8LdAbR71TN3ZplxBSN8O5CAa1owpBtVjG6IYlGV10UctyHcHJ\nPC3StAGawpUCEwZEy5rbNhFYnFm6ln0RmuQi1Zm83hgWVBjkjjk4u14K2p6v8e6T\nLgJukzRnOi+tEpK6oLZgIBqDrroTtNXOWIwE6jgGHQKBgQDiZixrNT5ojw+Iacxy\n/SbXXMds0MidcLp2elDPdTfQ4Lcrxp+9B5Y5PBbF5apR7Su1KdBTF8oZ9qspY1Jv\nk7cVESbXOg6UQbAs3TTz8xUF4HT9s/o3qZy2UKqUgz74QnKyx4+vXd5OQ/AZFiiN\njoEhkbI8soSap7ASTPmHYXFhXwKBgQDOc0aznhHvOm+dRbsIbmFtwIRyu+NCXUTb\nQn3oWmOKIX5cfVK69ThmCSGoNbJ4rQg5hwKSvfwL0ncsOOmk0yhuemLcErRQ6eXJ\n8uM4li9QhMlwE2rawutQmBfQ3CI5DnZO0z+c9cZMprwcTuA4gYNiL7FxPVJsM6wk\n3hieFuVplQKBgQDY5xK/U6+K9SToiJQ7xpWj11uowQ6y6AF86Qrq916WW/ShmBYK\nQG6IPy2CQ9q9ywAI/Rp9wVj7LvwlFucvxtGs+VXA9fppx9VF5liJL+aATt9HAVtE\nYNenQ/lpd6SorOC+r7rVRJVrXmN1ZWlM1a6ZvsCIrm+ky+tAXUbjkVPS+QKBgG/y\nQEdLkmwHYtiEJDwZJomN2AQi78NfseO29XEV+l2/dbaPWln4eKGTmAWPQHyBTzFq\njTGnBVIfyPFY1xDCU208vfiZx98MRccxBpb7kSJ3Loewb8O56EGmh1uA0qnftrVd\nhWQGPYX4743mE11wlR6bv/sohlYX2uOO7whiX/nVAoGATJBUrkdbZYKQMyPSggos\nhUWrRIukEjtnQsdTA5tylKrAEsDGuLwP3UNVkUoF+3JoI8LqCzdlkIiWMfvIkQ9p\nmeqPbskULwJrNm6JiF1Hhg1EZNTnkMcvnZ5Rzmfgn6MDBpKIYw79qEZboPCxhcXI\nBfi8cD8Mdt9YzGiCI2mvapo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dunia-gateway@business-282516.iam.gserviceaccount.com",
+  "client_id": "107888717051189103170",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dunia-gateway%40business-282516.iam.gserviceaccount.com"
+}
