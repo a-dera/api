@@ -1,10 +1,9 @@
-POST :env/v1/persons/:person_id/identifications
 
 ```
-{
-  "method": "GOV_ID",
-  "language": "EN"
-}
+curl env/v1/persons/:person_id/identifications
+-X POST
+  -H "Content-Type: multipart/form-data"
+  -F file=@localfilename
 ```
 
 Example response :
@@ -15,21 +14,23 @@ Example response :
   "reference": null,
   "status": "created",
   "completed_at": null,
-  "method": "GOV_ID",
+  "data": {
+        "file": "https://url.to/file.pdf",
+        "document_category": "others",
+        "document_type": "government_id",
+        "metadata": {},
+        "status": "pending",
+        "note": null,
+        "created": 1516281408895,
+        "updated": 1528454842365
+    },
   "proof_of_address_type": null, 
   "proof_of_address_issued_at": null,
-  "birth_date": "1972-12-24",
-  "birth_city": null,
-  "birth_country": null,
-  "id_number":"7138be0c0c1cd3a7d84",
-  "expiry_date": "2025-12-25",
-  "issuer": null
-  "nationality": null,
   "language": "EN"
 }
 ```
 
-Autorized methods :
+Autorized Document Types :
 
 | Value | Descritpion |
 |-------|-------------|
