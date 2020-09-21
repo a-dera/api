@@ -28,3 +28,11 @@ Example response :
   "language": "EN"
 }
 ```
+
+Autorized methods :
+
+| Value | Descritpion |
+|-------|-------------|
+| government_id | Government ID |
+| passport | Passport |
+| drivers_license | Drivers License |
